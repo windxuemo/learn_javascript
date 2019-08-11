@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+
+    <body>
+        <script>
+    function print_star(count)
+    {
+        var i = 1;
+        var j = 1;
+        for(i=1; i<=count;i++)
+        {
+            for(j=0;j<i;j++)
+            {
+                document.write("*");
+            }
+            document.write("<br>")
+        }
+    }
+
+do {
+    var n = prompt("请输入一个正整数");
+    if(Number(n) > 0 && parseInt(n) == parseFloat(n)) {
+        print_star(n);
+    } else {
+        alert("输入错误，请输入一个正整数");
+
+    }
+}
+while (!(Number(n) > 0 && parseInt(n) == parseFloat(n)))
+        </script>
+    </body>
+
+</html>
