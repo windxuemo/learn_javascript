@@ -1,0 +1,48 @@
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+	    <body>
+	<script>
+		function max_char(str)
+{
+	var tmp_json = {};
+	for(var i=0;i<str.length;i++)
+	{
+		var char = str.charAt(i)
+		if(tmp_json[char])
+		{
+			tmp_json[char]++
+		}
+		else
+		{
+			tmp_json[char] = 1
+		}
+
+
+	}
+
+	var max = 0;
+	var max_char;
+	for (var key in tmp_json)
+	{
+		if(max < tmp_json[key])
+		{
+			max = tmp_json[key];
+			max_char = key;
+		}
+
+	}
+
+	var ret = "the char is: " + max_char + ", the count is : " + max;
+	return ret
+
+}
+	
+	str="testfunsjlgjsuolsgh";
+	console.log(max_char(str));
+	</script>
+		</body>
+</html>
