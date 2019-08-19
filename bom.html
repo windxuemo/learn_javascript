@@ -9,10 +9,6 @@
 		window.onload = function()
 	{
 		//当页面完全加载所有内容后执行，包括图像、脚本文件、css文件等
-	var width = window.innerWidth
-	console.log(document.documentElement.clientWidth)
-	console.log(document.body.clientWidth)
-	console.log(width)
 	}
 
 	window.onunload = function()
@@ -24,7 +20,25 @@
 	console.log(document.documentElement.clientWidth)
 	console.log(document.body.clientWidth)
 	console.log(width)
-	
+
+    // setTimeout 函数创建一个定时器函数，例子是等待2000毫秒后执行函数，只执行一次
+    var timeid = setTimeout(function ()
+        {
+            console.log("time log");
+        }, 2000
+    )
+    
+    // 取消定时器的执行
+    clearTimeout(timeid)
+
+    var interval_id = setInterval(function ()
+        {
+            console.log("interval log")
+        }, 2000
+    )
+
+    //取消间隔器的执行函数
+    clearInterval(interval_id)
 	</script>
 		</body>
 </html>

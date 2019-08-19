@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            dom
+        </title>
+    </head>
+    <body>
+        <p id="p1">Hello World!</p>
+        <img id="img1" src="http://b-ssl.duitang.com/uploads/item/201608/04/20160804203943_XhB2e.jpeg"> </img>
+        <p id="p2" style="color: red;">Hello World!</p>
+
+        <script>
+
+            timeid = setTimeout(function ()
+                {
+            document.getElementById("p1").innerHTML = "替换p1内容"
+
+                }, 5000);
+
+            document.getElementById("img1").src = "http://m.imeitou.com/uploads/allimg/2018081608/surthcsugci.jpg"
+            document.getElementById("p2").style.color = "blue"
+
+            // clearTimeout(timeid)
+        </script>
+    </body>
+
+</html>
