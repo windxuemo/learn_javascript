@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+
+
+    <body>
+        <div id="div1">
+            你好吗？
+        </div>
+        <p>我很好</p>
+        <div>
+            测试一下嘛
+        </div>
+
+        <p>好的</p>
+
+
+        <script>
+
+
+    function Tag(name)
+    {
+        this.name = name;
+        this.test = function ()
+        {
+            console.log("test");
+        }
+    }
+
+    Tag.prototype.getElementsByTagName = function()
+    {
+        console.log("hi");
+    }
+
+    tag1 = new Tag("div");
+    tag2 = new Tag("p");
+
+    console.log(tag1.getElementsByTagName === tag2.getElementsByTagName)
+    console.log(tag1.test == tag2.test)
+
+    console.log(Tag.prototype.constructor === Tag)
+
+    console.log(tag1.__proto__ === Tag.prototype)
+
+
+        </script>
+    </body>
+
+
+</html>

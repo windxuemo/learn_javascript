@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <style type="text/css">
+            div,p{
+                width: 200px;
+                height: 100px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>你好吗？</div>
+        <p>我很好</p>
+        <div>测试一下嘛</div>
+        <p>好的啊</p>
+        <script>
+            function foods()
+{
+
+}
+
+    foods.prototype =
+    {
+        price: "$15",
+        say: function()
+        {
+            console.log("my price is " + this.price);
+        }
+    }
+
+    var apple = new foods();
+    apple.say()
+
+    var orange = {
+        price: "$10"
+    }
+
+    var banana = {
+    price: "$20"
+}
+
+    to_eat = [orange, banana]
+
+    foods.prototype.say.call(orange)
+    apple.say.call(orange)
+
+    apple.say.apply(orange)
+    
+        </script>
+    </body>
+</html>
+

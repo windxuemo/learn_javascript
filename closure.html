@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <style type="text/css">
+            div,p{
+                width: 200px;
+                height: 100px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>你好吗？</div>
+        <p>我很好</p>
+        <div>测试一下嘛</div>
+        <p>好的啊</p>
+        <script>
+
+            function say_hello(name)
+{
+    var prompt = "hello " + name + ".";
+    function inner()
+    {
+        console.log(prompt)
+    }
+
+    setTimeout(inner,7000);
+}
+
+say_hello("bob")
+
+
+
+        </script>
+    </body>
+</html>
+

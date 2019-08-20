@@ -1,28 +1,112 @@
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>
-            dom
-        </title>
-    </head>
-    <body>
-        <p id="p1">Hello World!</p>
-        <img id="img1" src="http://b-ssl.duitang.com/uploads/item/201608/04/20160804203943_XhB2e.jpeg"> </img>
-        <p id="p2" style="color: red;">Hello World!</p>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			dom
+		</title>
+		<style>
+#list li {
+	list-style-type: none;
+	width: 100px;
+	height: 50px;
+	line-height: 50px;
+	background-color: beige;
+	text-align: center;
+	float: left;
+}
 
-        <script>
+		#list li.current{
+			background-color: red;
+		}
+		</style>
+	</head>
+	<body>
+		<p id="p1">Hello World!</p>
+		<img id="img1" src="http://b-ssl.duitang.com/uploads/item/201608/04/20160804203943_XhB2e.jpeg"> </img>
+		<p id="p2" style="color: red;">Hello World!</p>
+		<h1 ondblclick="changetext(this)">请点击该文本</h1>
+		<div onmouseover="mOver(this)" onmouseout="mOut(this)" style="background-color: deepskyblue; width: 200px; height: 100px">鼠标移到上面</div>
 
-            timeid = setTimeout(function ()
-                {
-            document.getElementById("p1").innerHTML = "替换p1内容"
+		<div id="menu">
+			<ul id="list">
+				<li class="current">
+					<a href="###">one</a>
+				</li>
+				<li>
+					<a href="###">two</a>
+				</li>
+				<li>
+					<a href="###">three</a>
+				</li>
+				<li>
+					<a href="###">four</a>
+				</li>
+			</ul>
+		</div>
 
-                }, 5000);
 
-            document.getElementById("img1").src = "http://m.imeitou.com/uploads/allimg/2018081608/surthcsugci.jpg"
-            document.getElementById("p2").style.color = "blue"
+		<script>
 
-            // clearTimeout(timeid)
-        </script>
-    </body>
+			timeid = setTimeout(function ()
+				{
+					document.getElementById("p1").innerHTML = "替换p1内容"
+
+				}, 5000);
+
+document.getElementById("img1").src = "http://m.imeitou.com/uploads/allimg/2018081608/surthcsugci.jpg"
+document.getElementById("p2").style.color = "blue"
+
+// clearTimeout(timeid)
+
+function changetext(id)	
+{
+	id.innerHTML="改变内容"
+}
+
+function mOver(id)
+{
+	id.innerHTML = "你把鼠标移动到了上面"
+}
+
+function mOut(id)
+{
+	id.innerHTML = "你把鼠标移开了"
+}
+
+/*
+var liObjs = document.getElementById("list").getElementsByTagName("li");
+for(var i=0; i< liObjs.length; i++)
+{
+	var aObj = liObjs[i].firstElementChild;
+
+	aObj.onclick = function() {
+		for(var j=0; j< liObjs.length; j++)
+		{
+			liObjs[j].removeAttribute("class");
+		}
+
+		this.parentNode.className="current";
+	}
+}
+*/
+            var liObjs = document.getElementById("list").getElementsByTagName("li");
+            //循环遍历,找到每个li中的a,注册点击事件
+            for(var i = 0; i < liObjs.length; i++) {
+                //每个li中的a
+                var aObj = liObjs[i].firstElementChild;
+
+                aObj.onclick = function() {
+                    //把这个a所在的li的所有的兄弟元素的类样式全部移除
+                    for(var j = 0; j < liObjs.length; j++) {
+                        liObjs[j].removeAttribute("class");
+                    }
+                    //当前点击的a的父级元素li(点击的这个a所在的父级元素li),设置背景颜色
+                    this.parentNode.className = "current";
+                };
+            }
+
+
+		</script>
+	</body>
 
 </html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+
+
+    <body>
+        <div id="div1">
+            你好吗？
+        </div>
+        <p>我很好</p>
+        <div>
+            测试一下嘛
+        </div>
+
+        <p>好的</p>
+
+
+        <script>
+
+            var getele = new Object();
+getele.tag = function(tag_name)
+{
+    return document.getElementsByTagName(tag_name);
+}
+
+var setcss = new Object();
+setcss.red = function(tags)
+{
+    for(var i=0;i<tags.length;i++)
+    {
+        tags[i].style.backgroundColor = "red";
+    }
+}
+
+setcss.blue = function(tags)
+{
+    for(var i=0;i<tags.length;i++)
+    {
+        tags[i].style.backgroundColor = "blue";
+    }
+}
+
+var divs = getele.tag("div");
+setcss.red(divs);
+
+var ps = getele.tag("p");
+setcss.blue(ps);
+
+
+
+        </script>
+    </body>
+
+
+</html>

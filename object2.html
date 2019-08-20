@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+
+
+    <body>
+        <div id="div1">
+            你好吗？
+        </div>
+        <p>我很好</p>
+        <div>
+            测试一下嘛
+        </div>
+
+        <p>好的</p>
+
+
+        <script>
+
+    function change_tag_color(tag_name)
+{
+    var tags = document.getElementsByTagName(tag_name);
+
+    var color;
+    if(tag_name == "div")
+    {
+        color = "red";
+    }
+    else
+    {
+        color = "blue";
+    }
+
+    for(var i=0;i<tags.length;i++)
+    {
+        tags[i].style.backgroundColor = color;
+    }
+}
+
+
+    change_tag_color("div");
+    change_tag_color("p");
+
+
+        </script>
+    </body>
+
+
+</html>
