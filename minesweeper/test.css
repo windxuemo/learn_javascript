@@ -43,12 +43,12 @@
 
 }
 
-/* .main #begin { */
-/*     margin:5px; */
-/*     font-size: 20px; */
-/*     padding: 2px 10px; */
-/*     [> cursor: pointer; <] */
-/* } */
+.main #begin {
+    margin:5px;
+    font-size: 20px;
+    padding: 2px 10px;
+    cursor: pointer;
+}
 
 
 
@@ -62,4 +62,9 @@
 .main #tips ul li{
    margin: 5px 0;
    line-height: 20px;
+}
+
+.main input[type='radio'],
+.main #level label {
+    cursor:pointer;
 }
