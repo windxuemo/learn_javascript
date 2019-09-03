@@ -68,3 +68,22 @@
 .main #level label {
     cursor:pointer;
 }
+
+
+
+.main table {
+    background:#CCC;
+    float:left;
+}
+
+.main table td {
+    border: 2px outset #EEE;
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.main table td:hover {
+    background-color:#AAA;
+}

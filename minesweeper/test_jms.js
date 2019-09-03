@@ -1,5 +1,9 @@
-//在jms.js中
 (function () {
+
+
+    function random(lower, upper) {
+        return Math.floor(Math.random() * (upper - lower+1)) + lower;
+    };
     var JMS = function (id,rowCount,colCount, minLandMineCount, maxLandMineCount) {
         if (!(this instanceof JMS))
             return new JMS(id, rowCount, colCount, minLandMineCount, maxLandMineCount);
@@ -21,10 +25,34 @@
         this.doc.oncontextmenu = function () {//禁用右键菜单
             return false;
         };
+        this.play = function ()
+        {
+            this.landMineCount = 9;
+            landMineCount_handle = document.getElementById("landmine_count");
+            landMineCount_handle.innerHTML = this.landMineCount;
+            this.beginTime =  new Date();
 
+            var time_show = document.getElementById("cost_time");
+            timeHandle = setInterval(function () {
+                time_show.innerHTML = parseInt((new Date() - jms.beginTime) / 1000);
+            }, 1000);
+
+            this.bindCells();
+
+        };
+
+        this.mine = function(e)
+        {
+            function random(lower, upper) {
+                return Math.floor(Math.random() * (upper - lower+1)) + lower;
+            };
+
+            // e = e || event.target
+
+            alert(e.target.id);
+        }
 
         this.drawMap();
-
     };
 
     JMS.prototype = {
@@ -48,23 +76,17 @@
             }
         },
 
-        play: function ()
-        {
-            this.landMineCount = 9;
-            landMineCount_handle = document.getElementById("landmine_count");
-            landMineCount_handle.innerHTML = this.landMineCount;
-            beginTime =  new Date();
+        bindCells: function() {
+            var self = this;
+            for (var i = 0; i < this.rowCount; i++) {
+                for (var j = 0; j < this.colCount; j++) {
+                    (function (row, col) {
+                        self.doc.getElementById("m_" + i + "_" + j).onmousedown = self.mine;
+                    })(i,j);
+                }
+            }
 
-            var time_show = document.getElementById("cost_time");
-            timeHandle = setInterval(function () {
-                time_show.innerHTML = parseInt((new Date() - jms.beginTime / 1000));
-            }, 1000);
-
-        },
-
-
-
-
+        }
     };
 
     window.JMS = JMS;
