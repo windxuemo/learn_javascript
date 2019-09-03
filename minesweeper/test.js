@@ -35,7 +35,7 @@ function init(row_count, col_count, min_landmine_count, max_landmine_count){
 
     begin_button = document.getElementById("begin");
     begin_button.onclick =  function (){
-        jms.play();
+    jms.play();
 
     }
 

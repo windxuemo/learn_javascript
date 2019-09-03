@@ -41,17 +41,6 @@
 
         };
 
-        this.mine = function(e)
-        {
-            function random(lower, upper) {
-                return Math.floor(Math.random() * (upper - lower+1)) + lower;
-            };
-
-            // e = e || event.target
-
-            alert(e.target.id);
-        }
-
         this.drawMap();
     };
 
@@ -81,11 +70,39 @@
             for (var i = 0; i < this.rowCount; i++) {
                 for (var j = 0; j < this.colCount; j++) {
                     (function (row, col) {
-                        self.doc.getElementById("m_" + i + "_" + j).onmousedown = self.mine;
+                        self.doc.getElementById("m_" + i + "_" + j).onmousedown = function(e)
+                        {
+                            var current_id = e.target.id;
+                            var current_id_list = current_id.split("_")
+                            var num_location = parseInt(current_id_list[1])*10 + parseInt(current_id_list[2])
+                            // console.log(num_location)
+                            console.log(self.rowCount)
+                            self.init(num_location);
+
+                            // alert(current_id);
+
+                        }
                     })(i,j);
                 }
             }
 
+        },
+
+
+        init: function(num_location) {
+            var count = this.rowCount * this.colCount - 1;
+            for (var i=0; i<10;){
+                var num = random(0, count)
+                if(num != num_location)
+                {
+                    i++;
+                    var div_location_x= parseInt(num/10);
+                    var div_location_y= num%10;
+                    console.log(num);
+                    console.log(div_location_x);
+                    console.log(div_location_y);
+                }
+            }
         }
     };
 
