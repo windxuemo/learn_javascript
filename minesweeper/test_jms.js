@@ -22,6 +22,7 @@
         this.currentSetpCount = 0;//当前走的步数
         this.endCallBack = null;//游戏结束时的回调函数
         this.landMineCallBack = null;//标记为地雷时更新剩余地雷个数的回调函数
+        this.first_mine = 0;
         this.doc.oncontextmenu = function () {//禁用右键菜单
             return false;
         };
@@ -90,20 +91,52 @@
 
 
         init: function(num_location) {
-            var count = this.rowCount * this.colCount - 1;
-            for (var i=0; i<10;){
-                var num = random(0, count)
-                if(num != num_location)
+
+            if(!(this.first_mine))
+            {
+
+                var mine_arrs = [];
+                mine_arrs.push(num_location);
+                var count = this.rowCount * this.colCount - 1;
+                for (var i=0; i<10;){
+                    var num = random(0, count)
+                    console.log(num)
+                    if((mine_arrs.indexOf(num) == -1))
+                    {
+                        i++;
+                        this.arrs[num] = 9;
+                        console.log("yes" + num)
+                        var div_location_x= parseInt(num/10);
+                        var div_location_y= num%10;
+                        mine_arrs.push(num);
+                    }
+                }
+
+                this.first_mine = 1;
+            }
+
+            var near_num = [];
+            near_num.push(num_location-11);
+            near_num.push(num_location-10);
+            near_num.push(num_location-9);
+            near_num.push(num_location-1);
+            near_num.push(num_location+1);
+            near_num.push(num_location+9);
+            near_num.push(num_location+10);
+            near_num.push(num_location+11);
+
+            for(var j=0;j<near_num.length; j++)
+            {
+                var index = near_num[j];
+                if(this.arrs[index] == 9)
                 {
-                    i++;
-                    var div_location_x= parseInt(num/10);
-                    var div_location_y= num%10;
-                    console.log(num);
-                    console.log(div_location_x);
-                    console.log(div_location_y);
+                    console.log(num_location);
+                    console.log(index);
+                    console.log("yes");
                 }
             }
         }
+
     };
 
     window.JMS = JMS;

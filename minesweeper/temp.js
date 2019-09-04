@@ -1,32 +1,12 @@
+var arrs = [];
+arrs[9] = 10;
 
-function test(){
-    this.a = 10;
-    console.log(this.a);
+console.log(arrs[0]);
+console.log(arrs[9]);
+console.log(arrs[-10]);
 
-    // var self = this;
-    function bbb()
-    {
-        console.log(this.a)
-    }
-
-    bbb()
-
+if(arrs[9] == 10)
+{
+    console.log("yes");
 }
 
-new test()
-
-a = 20;
-
-// console.log(a)
-// test();
-
-// console.log(a)
-
-var obj = {
-    a: 30
-}
-
-// console.log(obj.a)
-obj.func = test;
-// obj.func();
-// console.log(obj.a)
