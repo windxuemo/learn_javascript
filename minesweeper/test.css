@@ -87,3 +87,15 @@
 .main table td:hover {
     background-color:#AAA;
 }
+
+
+.mine {
+    background-image:url(mine.png);
+    background-position:center;
+    background-repeat:no-repeat;
+}
+
+.main table td.normal {
+    border:2px solid #EEE;
+    background-color:#AAA;
+}

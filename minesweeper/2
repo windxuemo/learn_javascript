@@ -87,14 +87,34 @@
 
         },
 
-        refind: function(num_location)
-        {
 
+        init: function(num_location) {
 
-                var div_location_x= parseInt(num_location/10);
-                var div_location_y= num_location%10;
-                var obj = this.doc.getElementById("m_" + div_location_x + "_" + div_location_y);
-                obj.className = "normal";
+            if(!(this.first_mine))
+            {
+
+                var mine_arrs = [];
+                mine_arrs.push(num_location);
+                var count = this.rowCount * this.colCount - 1;
+                for (var i=0; i<10;){
+                    var num = random(0, count)
+                    // console.log(num)
+                    if((mine_arrs.indexOf(num) == -1))
+                    {
+                        i++;
+                        this.arrs[num] = 9;
+                        console.log("yes" + num)
+                        mine_arrs.push(num);
+                    }
+                }
+
+                this.first_mine = 1;
+            }
+
+            if(this.arrs[num_location] == 9)
+            {
+                alert("mine done!");
+            }
 
             var near_num = [];
             near_num.push(num_location-11);
@@ -106,8 +126,6 @@
             near_num.push(num_location+10);
             near_num.push(num_location+11);
 
-            var count_mine =0;
-
             for(var j=0;j<near_num.length; j++)
             {
                 var index = near_num[j];
@@ -117,64 +135,18 @@
                     console.log(index);
                     console.log("yes");
 
-                    count_mine = count_mine + 1;
+                    var div_location_x= parseInt(index/10);
+                    var div_location_y= index%10;
+
+                    var obj = this.doc.getElementById("m_" + div_location_x + "_" + div_location_y);
+                    obj.className = "mine"
                 }
                 else{
-                }
-
-            };
-
-            if(count_mine == 0)
-            {
-
-
-                for(var i=0;i<near_num.length; i++)
-                {
-                    var div_location_x= parseInt(near_num[i]/10);
-                    var div_location_y= near_num[i]%10;
+                    var div_location_x= parseInt(index/10);
+                    var div_location_y= index%10;
                     var obj = this.doc.getElementById("m_" + div_location_x + "_" + div_location_y);
-
-                    if(obj && obj.className)
-                    {
-
-                    }
-                    this.refind(near_num[i]);
+                    obj.className = "normal"
                 }
-            }
-            else
-            {
-                obj.innerHTML = count_mine;
-            }
-
-
-            init: function(num_location) {
-
-                if(!(this.first_mine))
-                {
-
-                    var mine_arrs = [];
-                    mine_arrs.push(num_location);
-                    var count = this.rowCount * this.colCount - 1;
-                    for (var i=0; i<10;){
-                        var num = random(0, count)
-                        // console.log(num)
-                        if((mine_arrs.indexOf(num) == -1))
-                        {
-                            i++;
-                            this.arrs[num] = 9;
-                            console.log("yes" + num)
-                            mine_arrs.push(num);
-                        }
-                    }
-
-                    this.first_mine = 1;
-                }
-
-                if(this.arrs[num_location] == 9)
-                {
-                    alert("mine done!");
-                }
-
             }
         }
 
@@ -182,9 +154,3 @@
 
     window.JMS = JMS;
 })();
-
-// var div_location_x= parseInt(index/10);
-// var div_location_y= index%10;
-//
-// var obj = this.doc.getElementById("m_" + div_location_x + "_" + div_location_y);
-// obj.className = "mine"
