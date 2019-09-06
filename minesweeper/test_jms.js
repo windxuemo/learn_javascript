@@ -28,14 +28,15 @@
         };
         this.play = function ()
         {
+            var self = this;
             this.landMineCount = 9;
-            landMineCount_handle = document.getElementById("landmine_count");
+            var landMineCount_handle = document.getElementById("landmine_count");
             landMineCount_handle.innerHTML = this.landMineCount;
             this.beginTime =  new Date();
 
             var time_show = document.getElementById("cost_time");
-            timeHandle = setInterval(function () {
-                time_show.innerHTML = parseInt((new Date() - jms.beginTime) / 1000);
+            var timeHandle = setInterval(function () {
+                time_show.innerHTML = parseInt((new Date() - self.beginTime) / 1000);
             }, 1000);
 
             this.bindCells();
@@ -91,10 +92,10 @@
         {
 
 
-                var div_location_x= parseInt(num_location/10);
-                var div_location_y= num_location%10;
-                var obj = this.doc.getElementById("m_" + div_location_x + "_" + div_location_y);
-                obj.className = "normal";
+            var div_location_x= parseInt(num_location/10);
+            var div_location_y= num_location%10;
+            var obj = this.doc.getElementById("m_" + div_location_x + "_" + div_location_y);
+            obj.className = "normal";
 
             var near_num = [];
             near_num.push(num_location-11);
@@ -119,72 +120,66 @@
 
                     count_mine = count_mine + 1;
                 }
-                else{
-                }
 
-            };
+            }
 
             if(count_mine == 0)
             {
 
-
                 for(var i=0;i<near_num.length; i++)
                 {
-                    var div_location_x= parseInt(near_num[i]/10);
-                    var div_location_y= near_num[i]%10;
-                    var obj = this.doc.getElementById("m_" + div_location_x + "_" + div_location_y);
+                    div_location_x= parseInt(near_num[i]/10);
+                    div_location_y= near_num[i]%10;
+                    obj = this.doc.getElementById("m_" + div_location_x + "_" + div_location_y);
 
-                    if(obj && obj.className)
+                    if(obj && (obj.className == ""))
                     {
-
+                        this.refind(near_num[i]);
                     }
-                    this.refind(near_num[i]);
                 }
             }
             else
             {
                 obj.innerHTML = count_mine;
             }
+        },
 
 
-            init: function(num_location) {
+        init: function(num_location) {
 
-                if(!(this.first_mine))
-                {
+            if(!(this.first_mine))
+            {
 
-                    var mine_arrs = [];
-                    mine_arrs.push(num_location);
-                    var count = this.rowCount * this.colCount - 1;
-                    for (var i=0; i<10;){
-                        var num = random(0, count)
-                        // console.log(num)
-                        if((mine_arrs.indexOf(num) == -1))
-                        {
-                            i++;
-                            this.arrs[num] = 9;
-                            console.log("yes" + num)
-                            mine_arrs.push(num);
-                        }
+                var mine_arrs = [];
+                mine_arrs.push(num_location);
+                var count = this.rowCount * this.colCount - 1;
+                for (var i=0; i<10;){
+                    var num = random(0, count)
+                    // console.log(num)
+                    if((mine_arrs.indexOf(num) == -1))
+                    {
+                        i++;
+                        this.arrs[num] = 9;
+                        console.log("yes" + num)
+                        mine_arrs.push(num);
                     }
-
-                    this.first_mine = 1;
                 }
 
-                if(this.arrs[num_location] == 9)
-                {
-                    alert("mine done!");
-                }
-
+                this.first_mine = 1;
             }
-        }
 
+            if(this.arrs[num_location] == 9)
+            {
+                alert("mine done!");
+            }
+            else{
+                this.refind(num_location);
+            }
+
+
+        }
     };
 
-    window.JMS = JMS;
-})();
 
-// var div_location_x= parseInt(index/10);
-// var div_location_y= index%10;
-//
-// var obj = this.doc.getElementById("m_" + div_location_x + "_" + div_location_y);
-// obj.className = "mine"
+window.JMS = JMS;
+})();
